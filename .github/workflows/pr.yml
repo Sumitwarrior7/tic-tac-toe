@@ -1,17 +1,19 @@
+# The name is purely descriptive and is used for display purposes in the GitHub Actions UI to help you and other contributors understand what the workflow does#
 name: An example job to comment a PR
 
+# "on" defines the trigger for our workflow, here it is the pull_request(either opening the pr or editing the pr). So whenver these trigger happen, the workflow will be executed
 on:
   pull_request:
     types: [opened, edited]
 
 jobs:
-  example_comment_pr:
+  example_comment_pr: # Name of the Job
     permissions: write-all
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # This specifies that job should run on the latest version of the Ubuntu runner, which is a VM environment provided by GitHub Actions
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 # This action fetches the source code from your repo and places it in the runner env so that other steps in the workflow can work with it.
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
